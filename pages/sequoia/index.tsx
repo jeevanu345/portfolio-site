@@ -11,14 +11,14 @@ import { RefreshCw, Send } from 'lucide-react';
 import { toast } from 'sonner';
 
 import v9Icon from '../../images/v9.png';
-import tarsIcon from '../../images/tars.svg';
+import sequoiaIcon from '../../images/sequoia.svg';
 import { v4 as uuidv4 } from 'uuid';
 
-export const LOCAL_HISTORY_KEY = 'tars-history';
-export const LOCAL_SESSION_KEY = 'session-id-tars';
+export const LOCAL_HISTORY_KEY = 'sequoia-history';
+export const LOCAL_SESSION_KEY = 'session-id-sequoia';
 
 type History = {
-  from: 'user' | 'tars';
+  from: 'user' | 'sequoia';
   message: string;
   timestamp?: number;
 };
@@ -44,7 +44,7 @@ const SAMPLE_QUESTIONS = [
 const Gpt: NextPage = () => {
   useEffect(() => {
     // google analytics
-    ReactGA.send({ hitType: 'pageview', page: '/tars', title: 'Tars' });
+    ReactGA.send({ hitType: 'pageview', page: '/sequoia', title: 'Sequoia' });
   }, []);
 
   const [isServerUp, setIsServerUp] = useState(false);
@@ -103,10 +103,10 @@ const Gpt: NextPage = () => {
       clearChatHistory();
     };
 
-    window.addEventListener('clearTarsHistory', handleClearHistory);
+    window.addEventListener('clearSequoiaHistory', handleClearHistory);
 
     return () => {
-      window.removeEventListener('clearTarsHistory', handleClearHistory);
+      window.removeEventListener('clearSequoiaHistory', handleClearHistory);
     };
   }, []);
 
@@ -175,7 +175,7 @@ const Gpt: NextPage = () => {
       });
   };
 
-  const pushQueryToHistory = (from: 'user' | 'tars', newQuery: string) => {
+  const pushQueryToHistory = (from: 'user' | 'sequoia', newQuery: string) => {
     setHistory(oldHistory => [
       ...oldHistory,
       {
@@ -202,13 +202,13 @@ const Gpt: NextPage = () => {
     setQueryProcessing(true);
     ReactGA.event({
       category: 'Button.Click',
-      action: 'Tars Query submit',
+      action: 'Sequoia Query submit',
       label: newQuery,
     });
     const response: string = await fetchResponse(newQuery);
     setQueryProcessing(false);
     pushQueryToHistory(
-      'tars',
+      'sequoia',
       !response
         ? 'Sorry, I am not feeling well today, please come back later.'
         : response
@@ -234,9 +234,14 @@ const Gpt: NextPage = () => {
       {/* Header */}
       <div className="border-b border-border p-2 py-4 flex items-center justify-between flex-shrink-0">
         <div className="flex items-center gap-3">
-          <Avatar title="tars" url={tarsIcon.src} width="w-8" height="h-8" />
+          <Avatar
+            title="sequoia"
+            url={sequoiaIcon.src}
+            width="w-8"
+            height="h-8"
+          />
           <div>
-            <h1 className="font-semibold text-foreground">TARS</h1>
+            <h1 className="font-semibold text-foreground">SEQUOIA</h1>
             <p
               className={`text-sm font-medium ${
                 isServerUp ? 'text-green-500' : 'text-red-500'
@@ -257,11 +262,11 @@ const Gpt: NextPage = () => {
                 message.from === 'user' ? (
                   <UserMessage key={index} message={message.message} />
                 ) : (
-                  <TarsMessage key={index} message={message.message} />
+                  <SequoiaMessage key={index} message={message.message} />
                 )
               )}
               {queryProcessing && (
-                <TarsMessage message="Thinking..." isTyping={true} />
+                <SequoiaMessage message="Thinking..." isTyping={true} />
               )}
             </>
           ) : (
@@ -270,7 +275,7 @@ const Gpt: NextPage = () => {
                 {isServerUp ? (
                   <>
                     <div className="Arialic_Hollow text-3xl text-foreground">
-                      Hey I'm TARS!
+                      Hey I'm SEQUOIA!
                     </div>
                     <p className="text-muted-foreground">
                       I'm here to help you get to know Jeevan better. Ask me
@@ -358,7 +363,7 @@ function UserMessage({ message }: { message: string }) {
   );
 }
 
-function TarsMessage({
+function SequoiaMessage({
   message,
   isTyping = false,
 }: {
@@ -368,7 +373,12 @@ function TarsMessage({
   return (
     <div className="flex justify-start">
       <div className="flex items-start gap-3 max-w-[80%]">
-        <Avatar title="tars" url={tarsIcon.src} width="w-8" height="h-8" />
+        <Avatar
+          title="sequoia"
+          url={sequoiaIcon.src}
+          width="w-8"
+          height="h-8"
+        />
         <div className="bg-muted rounded-2xl rounded-bl-md px-4 py-2">
           {isTyping ? (
             <div className="flex items-center gap-1">

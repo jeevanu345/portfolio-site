@@ -11,13 +11,13 @@ export default function Avatar({
   height?: string;
   border?: boolean;
 }) {
-  const isTarsAvatar = title === 'tars';
+  const isSequoiaAvatar = title === 'sequoia';
 
   return (
     <div
       className={`${width} ${height} rounded-full overflow-hidden ${border ? 'border' : ' border-0'} border-border bg-muted/20 flex items-center justify-center flex-shrink-0`}
     >
-      {isTarsAvatar ? (
+      {isSequoiaAvatar ? (
         <div
           className="w-full h-full flex items-center justify-center text-foreground"
           style={{

@@ -22,6 +22,6 @@ export default async function handler(
     `${process.env.NEXT_PUBLIC_TARS_ENDPOINT}/delete-session`,
     requestOptions
   );
-  console.log('tars session delete request ', result.status);
+  console.log('sequoia session delete request ', result.status);
   return res.status(result.status);
 }
