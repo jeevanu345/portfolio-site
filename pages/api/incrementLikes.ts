@@ -12,6 +12,11 @@ export default async function handler(
       message: 'Unauthorized',
     });
   }
+
+  if (!process.env.EDGE_CONFIG || !process.env.EDGE_CONFIG_TOKEN || !process.env.VERCEL_TOKEN) {
+    return res.status(200).json({ message: 'Edge Config missing' });
+  }
+
   const currentLikes = (await get('portfolio-likes')) as number;
   const likeIncrements = parseInt(req.query.increment as string);
 

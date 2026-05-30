@@ -3,6 +3,7 @@ import CredentialsProvider from 'next-auth/providers/credentials';
 
 // Dummy credentials/authorization
 export const authOptions = {
+  secret: process.env.NEXTAUTH_SECRET || 'fallback-secret-for-next-auth-dev',
   providers: [
     CredentialsProvider({
       name: 'V9 Credentials',
