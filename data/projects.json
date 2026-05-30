@@ -1,0 +1,125 @@
+[
+  {
+    "title": "raftkv",
+    "tagline": "A Raft-replicated key-value store written in Rust, with Redis-compatible wire protocol and gRPC peer-to-peer transport. Pure state machine consensus core with deterministic simulator.",
+    "year": 2026,
+    "badges": [
+      "Rust",
+      "gRPC",
+      "Redis",
+      "Docker",
+      "Kubernetes",
+      "Helm"
+    ],
+    "github_url": "https://github.com/jeevanu345/raftkv",
+    "demo_url": "",
+    "stars": 0,
+    "priority": 10,
+    "category": "Systems Project"
+  },
+  {
+    "title": "Code-Repair-Agent with Execution-Grounded RL",
+    "tagline": "Trains an LLM agent to resolve real GitHub issues from SWE-bench using GRPO. Reward comes from running the project's actual test suite inside ephemeral Docker sandboxes.",
+    "year": 2026,
+    "badges": [
+      "Python",
+      "Docker",
+      "vLLM",
+      "GRPO",
+      "Ray",
+      "Terraform"
+    ],
+    "github_url": "https://github.com/jeevanu345/Code-Repair-Agent-with-Execution-Grounded-RL-on-SWE-Bench",
+    "demo_url": "",
+    "stars": 0,
+    "priority": 9,
+    "category": "AI/ML Project"
+  },
+  {
+    "title": "NCERT RAG Bot: AI-Powered NCERT Tutor",
+    "tagline": "An intelligent AI tutor using RAG pipeline for conversational Q&A from NCERT Class 10 PDFs with local LLM integration, smart text chunking, vector search, and memory-based context retention.",
+    "year": 2025,
+    "badges": [
+      "Python",
+      "Streamlit",
+      "Ollama",
+      "Chroma DB",
+      "LangChain",
+      "FAISS"
+    ],
+    "github_url": "https://github.com/jeevanu345/NCERT-RAG-Bot",
+    "demo_url": "",
+    "stars": 0,
+    "priority": 8,
+    "category": "AI/ML Project"
+  },
+  {
+    "title": "Instant Canteen: Smart Campus Food Ordering",
+    "tagline": "Full-stack web app streamlining campus canteen operations with pre-order meals, instant UPI-based QR payments, real-time vendor dashboard for menu management and order tracking.",
+    "year": 2025,
+    "badges": [
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Vite",
+      "Supabase",
+      "Netlify"
+    ],
+    "github_url": "https://github.com/jeevanu345/instant-canteen",
+    "demo_url": "",
+    "stars": 0,
+    "priority": 7,
+    "category": "Web Project"
+  },
+  {
+    "title": "AI-Based Music Recommendation System",
+    "tagline": "Python-based GUI app that recommends songs using ChatGPT with Spotify and YouTube Music API integrations for real-time mood-based suggestions.",
+    "year": 2024,
+    "badges": [
+      "Python",
+      "Tkinter",
+      "OpenAI API",
+      "Spotify API",
+      "YouTube Music API"
+    ],
+    "github_url": "https://github.com/jeevanu345/ai-music-recommendation",
+    "demo_url": "",
+    "stars": 0,
+    "priority": 6,
+    "category": "AI/ML Project"
+  },
+  {
+    "title": "TapCart: NFC-Based Smart Retail System",
+    "tagline": "IoT-integrated retail platform enabling tap-to-shop purchases and real-time inventory sync across devices via NFC technology.",
+    "year": 2024,
+    "badges": [
+      "NFC",
+      "IoT",
+      "React Native",
+      "Node.js",
+      "Express.js",
+      "Cloud APIs"
+    ],
+    "github_url": "https://github.com/jeevanu345/tapcart",
+    "demo_url": "",
+    "stars": 0,
+    "priority": 5,
+    "category": "IoT Project"
+  },
+  {
+    "title": "COVID-19 Genome Mutation Visualization Tool",
+    "tagline": "Visualization tool to compare genome sequences of COVID-19 variants and visualize protein structure mutations via ChimeraX with phylogenetic analysis.",
+    "year": 2024,
+    "badges": [
+      "Python",
+      "Biopython",
+      "ChimeraX",
+      "Matplotlib"
+    ],
+    "github_url": "https://github.com/jeevanu345/covid-genome-viz",
+    "demo_url": "",
+    "stars": 0,
+    "priority": 4,
+    "category": "Research Project"
+  }
+]
