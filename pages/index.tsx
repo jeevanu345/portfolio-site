@@ -192,7 +192,7 @@ const Home: NextPage = () => {
             <div className="text-light text-muted-foreground mt-2 space-y-1">
               <p>
                 <span className="font-medium text-foreground">GPA:</span>{' '}
-                8.23/10.0
+                8.4/10.0
                 {' | '}
                 <span className="font-medium text-foreground">
                   Expected Graduation:

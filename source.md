@@ -5,7 +5,7 @@ Bachelor of Engineering in Information Science & Engineering
 Aug 2022 – Jun 2026
 B.M.S College of Engineering, VTU – Bengaluru
 • Expected Graduation: July 2026
-• Cumulative GPA: 8.23/10.0
+• Cumulative GPA: 8.4/10.0
 • Relevant Coursework: Data Structures & Algorithms, OOPs, DBMS, Operating Systems, Networks, Software Engi-
 neering, Machine Learning
 • Extracurriculars: Vocalist, Guitarist, Football
