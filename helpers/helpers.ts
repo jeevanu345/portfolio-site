@@ -114,7 +114,8 @@ export const badgeImage: {
   // ─── Jeevan's project badges ─────────────────────────────────
   rust: 'https://img.shields.io/badge/Rust-%23000000.svg?style=flat-square&logo=rust&logoColor=white',
   grpc: 'https://img.shields.io/badge/gRPC-%23244c5a.svg?style=flat-square&logo=google&logoColor=white',
-  redis: 'https://img.shields.io/badge/Redis-%23DC382D.svg?style=flat-square&logo=redis&logoColor=white',
+  redis:
+    'https://img.shields.io/badge/Redis-%23DC382D.svg?style=flat-square&logo=redis&logoColor=white',
   kubernetes:
     'https://img.shields.io/badge/Kubernetes-%23326ce5.svg?style=flat-square&logo=kubernetes&logoColor=white',
   helm: 'https://img.shields.io/badge/Helm-%230F1689.svg?style=flat-square&logo=helm&logoColor=white',
@@ -131,7 +132,8 @@ export const badgeImage: {
     'https://img.shields.io/badge/Chroma_DB-%23000.svg?style=flat-square&logo=chromadb&logoColor=white',
   langchain:
     'https://img.shields.io/badge/LangChain-%231C3C3C.svg?style=flat-square&logo=langchain&logoColor=white',
-  faiss: 'https://img.shields.io/badge/FAISS-%230066A7.svg?style=flat-square&logo=facebook&logoColor=white',
+  faiss:
+    'https://img.shields.io/badge/FAISS-%230066A7.svg?style=flat-square&logo=facebook&logoColor=white',
   vite: 'https://img.shields.io/badge/Vite-%23646CFF.svg?style=flat-square&logo=vite&logoColor=white',
   supabase:
     'https://img.shields.io/badge/Supabase-%233ECF8E.svg?style=flat-square&logo=supabase&logoColor=white',

@@ -3,14 +3,7 @@
     "title": "raftkv",
     "tagline": "A Raft-replicated key-value store written in Rust, with Redis-compatible wire protocol and gRPC peer-to-peer transport. Pure state machine consensus core with deterministic simulator.",
     "year": 2026,
-    "badges": [
-      "Rust",
-      "gRPC",
-      "Redis",
-      "Docker",
-      "Kubernetes",
-      "Helm"
-    ],
+    "badges": ["Rust", "gRPC", "Redis", "Docker", "Kubernetes", "Helm"],
     "github_url": "https://github.com/jeevanu345/raftkv",
     "demo_url": "",
     "stars": 0,
@@ -21,14 +14,7 @@
     "title": "Code-Repair-Agent with Execution-Grounded RL",
     "tagline": "Trains an LLM agent to resolve real GitHub issues from SWE-bench using GRPO. Reward comes from running the project's actual test suite inside ephemeral Docker sandboxes.",
     "year": 2026,
-    "badges": [
-      "Python",
-      "Docker",
-      "vLLM",
-      "GRPO",
-      "Ray",
-      "Terraform"
-    ],
+    "badges": ["Python", "Docker", "vLLM", "GRPO", "Ray", "Terraform"],
     "github_url": "https://github.com/jeevanu345/Code-Repair-Agent-with-Execution-Grounded-RL-on-SWE-Bench",
     "demo_url": "",
     "stars": 0,
@@ -110,12 +96,7 @@
     "title": "COVID-19 Genome Mutation Visualization Tool",
     "tagline": "Visualization tool to compare genome sequences of COVID-19 variants and visualize protein structure mutations via ChimeraX with phylogenetic analysis.",
     "year": 2024,
-    "badges": [
-      "Python",
-      "Biopython",
-      "ChimeraX",
-      "Matplotlib"
-    ],
+    "badges": ["Python", "Biopython", "ChimeraX", "Matplotlib"],
     "github_url": "https://github.com/jeevanu345/covid-genome-viz",
     "demo_url": "",
     "stars": 0,

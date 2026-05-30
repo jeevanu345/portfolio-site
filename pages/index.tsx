@@ -70,17 +70,11 @@ const skillsData = {
 };
 
 const SkillCategory = memo(
-  ({
-    title,
-    skills,
-  }: {
-    title: string;
-    skills: string[];
-  }) => (
+  ({ title, skills }: { title: string; skills: string[] }) => (
     <div className="mb-4">
       <div className="text-sm font-medium text-primary mb-2">{title}</div>
       <div className="flex flex-wrap gap-1.5">
-        {skills.map((skill) => (
+        {skills.map(skill => (
           <Badge key={skill} variant="secondary" className="text-xs">
             {skill}
           </Badge>
@@ -107,7 +101,7 @@ const Home: NextPage = () => {
     ReactGA.send({ hitType: 'pageview', page: '/', title: 'Home' });
 
     fetchProjectsStar()
-      .then((updatedProjectsListWithStars) => {
+      .then(updatedProjectsListWithStars => {
         setProjectList([...updatedProjectsListWithStars]);
         setIsLoading(false);
       })
@@ -130,7 +124,9 @@ const Home: NextPage = () => {
             <div className="">Hey, I'm Jeevan U Gowda</div>
             <div className="mt-4">
               <span className="hidden sm:inline-block mr-4">I'm a </span>
-              <span className="text-primary">Full-Stack Developer & AI/ML Enthusiast</span>
+              <span className="text-primary">
+                Full-Stack Developer & AI/ML Enthusiast
+              </span>
             </div>
           </div>
           <div className="mt-4 flex items-center">
@@ -155,9 +151,9 @@ const Home: NextPage = () => {
                 target={'_blank'}
               >
                 impactful projects
-              </Anchor>
-              {' '}that span full-stack development, AI/ML, distributed systems,
-              and IoT.
+              </Anchor>{' '}
+              that span full-stack development, AI/ML, distributed systems, and
+              IoT.
             </p>
           </div>
         </div>
@@ -190,17 +186,25 @@ const Home: NextPage = () => {
                 onClick={() => handleLinkClick('BMSCE Link')}
               >
                 B.M.S College of Engineering, VTU
-              </Anchor>
-              {' '}— Bengaluru
+              </Anchor>{' '}
+              — Bengaluru
             </div>
             <div className="text-light text-muted-foreground mt-2 space-y-1">
               <p>
-                <span className="font-medium text-foreground">GPA:</span> 8.23/10.0
+                <span className="font-medium text-foreground">GPA:</span>{' '}
+                8.23/10.0
                 {' | '}
-                <span className="font-medium text-foreground">Expected Graduation:</span> July 2026
+                <span className="font-medium text-foreground">
+                  Expected Graduation:
+                </span>{' '}
+                July 2026
               </p>
               <p>
-                <span className="font-medium text-foreground">Relevant Coursework:</span> Data Structures & Algorithms, OOPs, DBMS, Operating Systems, Networks, Software Engineering, Machine Learning
+                <span className="font-medium text-foreground">
+                  Relevant Coursework:
+                </span>{' '}
+                Data Structures & Algorithms, OOPs, DBMS, Operating Systems,
+                Networks, Software Engineering, Machine Learning
               </p>
             </div>
           </div>
@@ -216,11 +220,15 @@ const Home: NextPage = () => {
           <div className="flex flex-col justify-between sm:w-[500px]">
             <div className="text-light text-muted-foreground space-y-2">
               <p>
-                <span className="font-medium text-foreground">12th Grade</span> (Karnataka State Board) — 90%{' '}
-                <span className="text-muted-foreground">| Apr 2021 – Jun 2022</span>
+                <span className="font-medium text-foreground">12th Grade</span>{' '}
+                (Karnataka State Board) — 90%{' '}
+                <span className="text-muted-foreground">
+                  | Apr 2021 – Jun 2022
+                </span>
               </p>
               <p>
-                <span className="font-medium text-foreground">10th Grade</span> (CBSE Board) — 90%{' '}
+                <span className="font-medium text-foreground">10th Grade</span>{' '}
+                (CBSE Board) — 90%{' '}
                 <span className="text-muted-foreground">| 2019 – 2020</span>
               </p>
             </div>
@@ -234,12 +242,15 @@ const Home: NextPage = () => {
             Apr '25
           </div>
           <div className="flex flex-col justify-between sm:w-[500px]">
-            <div className="text-muted-foreground font-light">Research Paper</div>
+            <div className="text-muted-foreground font-light">
+              Research Paper
+            </div>
             <div className="text-lg sm:text-xl">
               TapCart: NFC-Based Payment Interface
             </div>
             <div className="text-light text-muted-foreground mt-2">
-              Proposed secure NFC-based merchant payment architecture for contactless transactions without extra hardware.
+              Proposed secure NFC-based merchant payment architecture for
+              contactless transactions without extra hardware.
             </div>
           </div>
         </div>
@@ -253,9 +264,18 @@ const Home: NextPage = () => {
         <Separator className="my-4" />
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2 mt-4">
           <SkillCategory title="Languages" skills={skillsData.languages} />
-          <SkillCategory title="Frameworks & Tools" skills={skillsData.frameworks} />
-          <SkillCategory title="Cloud / DevOps" skills={skillsData.cloudDevOps} />
-          <SkillCategory title="Data Science & ML" skills={skillsData.dataScience} />
+          <SkillCategory
+            title="Frameworks & Tools"
+            skills={skillsData.frameworks}
+          />
+          <SkillCategory
+            title="Cloud / DevOps"
+            skills={skillsData.cloudDevOps}
+          />
+          <SkillCategory
+            title="Data Science & ML"
+            skills={skillsData.dataScience}
+          />
         </div>
       </div>
 
@@ -287,16 +307,24 @@ const Home: NextPage = () => {
         <Separator className="my-4" />
         <div className="text-muted-foreground font-light space-y-3 mt-4">
           <p>
-            I'm a responsible, organized, and hardworking individual passionate about technology, innovation, and problem-solving. I enjoy working at the intersection of software engineering and emerging technologies.
+            I'm a responsible, organized, and hardworking individual passionate
+            about technology, innovation, and problem-solving. I enjoy working
+            at the intersection of software engineering and emerging
+            technologies.
           </p>
           <p>
-            <span className="font-medium text-foreground">Soft Skills:</span> Communication, Critical Thinking, Analytical Problem Solving
+            <span className="font-medium text-foreground">Soft Skills:</span>{' '}
+            Communication, Critical Thinking, Analytical Problem Solving
           </p>
           <p>
-            <span className="font-medium text-foreground">Languages:</span> English (Fluent), Hindi (Fluent), Kannada (Native)
+            <span className="font-medium text-foreground">Languages:</span>{' '}
+            English (Fluent), Hindi (Fluent), Kannada (Native)
           </p>
           <p>
-            <span className="font-medium text-foreground">Extracurriculars:</span> Vocalist, Guitarist, Football
+            <span className="font-medium text-foreground">
+              Extracurriculars:
+            </span>{' '}
+            Vocalist, Guitarist, Football
           </p>
         </div>
 

@@ -27,7 +27,7 @@ const ColorPaletteSelector: React.FC<ColorPaletteSelectorProps> = ({
 
   const handleThemeClick = useCallback(
     (themeName: string) => {
-      const theme = themes.find((t) => t.name === themeName);
+      const theme = themes.find(t => t.name === themeName);
       if (!theme) return;
 
       // If clicking the already-applied theme → deselect
@@ -71,7 +71,7 @@ const ColorPaletteSelector: React.FC<ColorPaletteSelectorProps> = ({
 
   const handleMouseEnter = useCallback(
     (themeName: string) => {
-      const theme = themes.find((t) => t.name === themeName);
+      const theme = themes.find(t => t.name === themeName);
       if (theme && theme.name !== currentTheme?.name) {
         setHoveredTheme(themeName);
         previewTheme(theme, mode);
@@ -85,7 +85,7 @@ const ColorPaletteSelector: React.FC<ColorPaletteSelectorProps> = ({
       setHoveredTheme(null);
       // If we have a selected theme, re-preview that instead of cancelling
       if (selectedTheme && selectedTheme !== currentTheme?.name) {
-        const theme = themes.find((t) => t.name === selectedTheme);
+        const theme = themes.find(t => t.name === selectedTheme);
         if (theme) {
           previewTheme(theme, mode);
           return;
@@ -93,7 +93,15 @@ const ColorPaletteSelector: React.FC<ColorPaletteSelectorProps> = ({
       }
       cancelPreview();
     }
-  }, [hoveredTheme, selectedTheme, currentTheme, themes, mode, previewTheme, cancelPreview]);
+  }, [
+    hoveredTheme,
+    selectedTheme,
+    currentTheme,
+    themes,
+    mode,
+    previewTheme,
+    cancelPreview,
+  ]);
 
   const isThemeActive = (themeName: string) =>
     currentTheme?.name === themeName && !selectedTheme;
@@ -111,9 +119,7 @@ const ColorPaletteSelector: React.FC<ColorPaletteSelectorProps> = ({
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <Palette className="h-5 w-5 text-primary" />
-          <h2 className="text-lg font-medium text-foreground">
-            Color Palette
-          </h2>
+          <h2 className="text-lg font-medium text-foreground">Color Palette</h2>
         </div>
         <Button
           variant="outline"
@@ -139,7 +145,7 @@ const ColorPaletteSelector: React.FC<ColorPaletteSelectorProps> = ({
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
-        {themes.map((theme) => {
+        {themes.map(theme => {
           const colors = theme.colors[mode];
           const isApplied = isThemeActive(theme.name);
           const isSelected = selectedTheme === theme.name;
@@ -160,9 +166,7 @@ const ColorPaletteSelector: React.FC<ColorPaletteSelectorProps> = ({
               } ${isHovered ? 'border-primary/70 shadow-md' : ''}`}
               style={{
                 backgroundColor:
-                  mode === 'light'
-                    ? colors.background
-                    : colors.card,
+                  mode === 'light' ? colors.background : colors.card,
               }}
               aria-label={`Select ${theme.displayName} theme`}
             >
@@ -195,7 +199,12 @@ const ColorPaletteSelector: React.FC<ColorPaletteSelectorProps> = ({
                 className={`text-xs font-medium truncate w-full text-center ${
                   isApplied || isSelected ? 'text-primary' : ''
                 }`}
-                style={{ color: isApplied || isSelected ? colors.primary : colors.mutedForeground }}
+                style={{
+                  color:
+                    isApplied || isSelected
+                      ? colors.primary
+                      : colors.mutedForeground,
+                }}
               >
                 {theme.displayName}
               </span>
@@ -203,7 +212,10 @@ const ColorPaletteSelector: React.FC<ColorPaletteSelectorProps> = ({
               {/* Applied indicator */}
               {isApplied && (
                 <div className="absolute top-1.5 right-1.5">
-                  <Check className="h-3.5 w-3.5" style={{ color: colors.primary }} />
+                  <Check
+                    className="h-3.5 w-3.5"
+                    style={{ color: colors.primary }}
+                  />
                 </div>
               )}
             </button>
@@ -217,7 +229,8 @@ const ColorPaletteSelector: React.FC<ColorPaletteSelectorProps> = ({
           <span className="text-sm text-muted-foreground">
             Previewing{' '}
             <span className="font-medium text-foreground">
-              {themes.find((t) => t.name === selectedTheme)?.displayName || selectedTheme}
+              {themes.find(t => t.name === selectedTheme)?.displayName ||
+                selectedTheme}
             </span>
           </span>
           <Button
@@ -228,11 +241,7 @@ const ColorPaletteSelector: React.FC<ColorPaletteSelectorProps> = ({
             <Check className="h-3.5 w-3.5" />
             Apply
           </Button>
-          <Button
-            size="sm"
-            variant="outline"
-            onClick={handleCancel}
-          >
+          <Button size="sm" variant="outline" onClick={handleCancel}>
             Cancel
           </Button>
         </div>
