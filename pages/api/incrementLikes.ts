@@ -13,7 +13,11 @@ export default async function handler(
     });
   }
 
-  if (!process.env.EDGE_CONFIG || !process.env.EDGE_CONFIG_TOKEN || !process.env.VERCEL_TOKEN) {
+  if (
+    !process.env.EDGE_CONFIG ||
+    !process.env.EDGE_CONFIG_TOKEN ||
+    !process.env.VERCEL_TOKEN
+  ) {
     return res.status(200).json({ message: 'Edge Config missing' });
   }
 
