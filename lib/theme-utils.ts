@@ -191,7 +191,13 @@ export const loadThemePreference = (): {
 } | null => {
   try {
     const saved = localStorage.getItem('theme-preference');
-    return saved ? JSON.parse(saved) : null;
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      // Always enforce the default classic theme on load as per user request
+      parsed.themeName = 'default';
+      return parsed;
+    }
+    return null;
   } catch {
     return null;
   }
@@ -200,29 +206,7 @@ export const loadThemePreference = (): {
 // Utility to instantly apply saved theme from localStorage CSS variables
 // This provides immediate theme application without waiting for theme loading
 export const applyInstantThemeFromCache = (): boolean => {
-  try {
-    const cachedTheme = localStorage.getItem('theme-cache');
-    const cachedMode = localStorage.getItem('theme-mode-cache');
-
-    if (cachedTheme && cachedMode) {
-      const themeData = JSON.parse(cachedTheme);
-      const mode = JSON.parse(cachedMode) as 'light' | 'dark';
-
-      // Apply cached theme colors instantly
-      const root = document.documentElement;
-      const colors = themeData.colors[mode];
-
-      Object.entries(colors).forEach(([key, value]) => {
-        const cssVar = `--${camelToKebab(key)}`;
-        root.style.setProperty(cssVar, value as string, 'important');
-      });
-
-      return true;
-    }
-  } catch (error) {
-    console.warn('Failed to apply instant theme from cache:', error);
-  }
-
+  // Always return false to disable instant cache and ensure the classic default theme is used initially
   return false;
 };
 
