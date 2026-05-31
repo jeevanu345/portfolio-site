@@ -11,7 +11,10 @@ function Footer(): JSX.Element {
           </Anchor>
         </div>
         <div className="mt-1">
-          <Anchor href="https://portfolio-site-arch-linux-style.vercel.app/" className="text-xs text-muted-foreground hover:text-foreground transition-colors">
+          <Anchor
+            href="https://portfolio-site-arch-linux-style.vercel.app/"
+            className="text-xs text-muted-foreground hover:text-foreground transition-colors"
+          >
             Open Linux
           </Anchor>
         </div>
