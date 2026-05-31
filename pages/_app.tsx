@@ -10,6 +10,7 @@ import Cursor from '../components/Cursor';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { Toaster } from '@/components/ui/sonner';
 import FloatingButtonGroup from '../components/FloatingButtonGroup';
+import AIChatWidget from '../components/AIChatWidget';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [loading, setLoading] = useState(false);
@@ -55,6 +56,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             </div>
             {currentLink !== 'sequoia' && <Footer />}
             <FloatingButtonGroup currentLink={currentLink} />
+            <AIChatWidget />
           </Context>
         </SessionProvider>
         <Toaster />

@@ -1,0 +1,33 @@
+# Jeevan U Gowda
+## Contact
+- Location: Bengaluru, India
+- Email: jeevanu345@gmail.com
+- Phone: +91 63627 24307
+- Links: jeevanu345 (GitHub)
+
+## Education
+- B.E. in Information Science & Engineering, B.M.S College of Engineering, VTU (Aug 2022 – Jul 2026). GPA: 8.4/10.0
+- Coursework: Data Structures & Algorithms, OOPs, DBMS, Operating Systems, Networks, Software Engineering, Machine Learning
+- 12th Grade (Karnataka State Board) - 90%
+- 10th Grade (CBSE Board) - 90%
+
+## Skills
+- Languages: C++, Python, C, Java, JavaScript, HTML/CSS
+- Frameworks & Tools: React.js, Node.js, Express.js, Tailwind CSS, MySQL, MongoDB, Jupyter Notebook, Framer Motion
+- Cloud/DevOps: AWS (EC2, S3, IAM), Linux, Docker, Kubernetes, Networking basics
+- Data Science & ML: Pandas, NumPy, Scikit-learn, Feature Engineering, Matplotlib, Seaborn
+
+## Projects
+1. NCERT RAG Bot: AI-Powered NCERT Tutor. Built an intelligent AI tutor using a Retrieval-Augmented Generation (RAG) pipeline to enable conversational Q&A from NCERT Class 10 PDFs with local LLM integration, smart text chunking, vector search, and memory-based context retention. Tech: Python, Streamlit, Ollama (phi3-fast), Chroma DB, LangChain.
+2. Instant Canteen: Smart Campus Food Ordering & Payment System. Built a full-stack web application enabling students to pre-order meals and make instant UPI-based QR payments. Tech: React, TypeScript, Tailwind CSS, Vite, Supabase, Netlify.
+3. AI-Based Music Recommendation System: Developed a Python-based GUI app that recommends songs using ChatGPT with Spotify and YouTube Music API integrations. Tech: Python, Tkinter, OpenAI API, Spotify API, YouTube Music API.
+4. TapCart: NFC-Based Smart Retail System: Designed an IoT-integrated retail platform enabling "tap-to-shop" purchases. Tech: NFC, IoT, React Native, Node.js, Express.js, Cloud APIs.
+5. COVID-19 Genome Mutation Visualization Tool: Built a visualization tool to compare genome sequences of COVID-19 variants. Tech: Python, Biopython, ChimeraX, Matplotlib.
+6. raftkv: A Raft-replicated key-value store, written in Rust, with a Redis-compatible wire protocol and gRPC transport.
+7. swe-rl-agent: Code-Repair Agent with Execution-Grounded RL on SWE-Bench.
+
+## About Me
+Responsible, organized, and hardworking individual passionate about technology, innovation, and problem-solving.
+Soft Skills: Communication, Critical Thinking, Analytical Problem Solving
+Languages: English (Fluent), Hindi (Fluent), Kannada (Native)
+Extracurriculars: Vocalist, Guitarist, Football
