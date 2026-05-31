@@ -1,5 +1,5 @@
 Jeevan U Gowda
-Bengaluru, India jeevanu345@gmail.com +91 63627 24307 jeevanu345 jeevanu345
+Bengaluru, India jeevanu345@gmail.com jeevanu345 jeevanu345
 Education
 Bachelor of Engineering in Information Science & Engineering
 Aug 2022 – Jun 2026
