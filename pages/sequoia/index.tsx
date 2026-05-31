@@ -111,28 +111,15 @@ const Gpt: NextPage = () => {
   }, []);
 
   useEffect(() => {
-    fetch(process.env.NEXT_PUBLIC_TARS_ENDPOINT || '', {
-      method: 'GET',
-    })
-      .then(response => response.status)
-      .then(code => {
-        setIsServerUp(code === 200);
-        if (code === 200) {
-          const oldHistory: History[] = JSON.parse(
-            localStorage.getItem(LOCAL_HISTORY_KEY) || '[]'
-          );
-          setHistory(oldHistory);
+    setIsServerUp(true);
+    const oldHistory: History[] = JSON.parse(
+      localStorage.getItem(LOCAL_HISTORY_KEY) || '[]'
+    );
+    setHistory(oldHistory);
 
-          let oldSessionId =
-            localStorage.getItem(LOCAL_SESSION_KEY) || uuidv4();
-          localStorage.setItem(LOCAL_SESSION_KEY, oldSessionId);
-          setSessionId(oldSessionId);
-        }
-      })
-      .catch(error => {
-        console.error(error);
-        setIsServerUp(false);
-      });
+    let oldSessionId = localStorage.getItem(LOCAL_SESSION_KEY) || uuidv4();
+    localStorage.setItem(LOCAL_SESSION_KEY, oldSessionId);
+    setSessionId(oldSessionId);
 
     // Set random questions on component mount
     setSelectedQuestions(getRandomQuestions());
@@ -154,20 +141,25 @@ const Gpt: NextPage = () => {
     const myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');
 
-    return await fetch(`${process.env.NEXT_PUBLIC_TARS_ENDPOINT}/api`, {
+    const formattedMessages = history.map(h => ({
+      role: h.from === 'user' ? 'user' : 'assistant',
+      content: h.message,
+    }));
+    formattedMessages.push({ role: 'user', content: newQuery });
+
+    return await fetch('/api/chat', {
       method: 'POST',
       headers: myHeaders,
       body: JSON.stringify({
-        query: newQuery,
-        session_id: sessionId,
+        messages: formattedMessages,
       }),
     })
       .then(response => {
         if (response.status !== 200) return '';
         return response.json();
       })
-      .then(response => {
-        return response.response;
+      .then(data => {
+        return data?.choices?.[0]?.message?.content || '';
       })
       .catch(error => {
         console.error(error);
