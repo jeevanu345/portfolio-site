@@ -7,7 +7,7 @@ export default function AIChatWidget() {
     [
       {
         role: 'assistant',
-        content: "Hi! I'm Jeevan's AI assistant. How can I help you today?",
+        content: "Hi! I'm SEQUOIA AI. How can I help you today?",
       },
     ]
   );
@@ -66,7 +66,7 @@ export default function AIChatWidget() {
           <div className="bg-primary text-primary-foreground p-4 flex justify-between items-center">
             <div className="flex items-center gap-2">
               <Bot size={20} />
-              <h3 className="font-semibold">Jeevan's AI Assistant</h3>
+              <h3 className="font-semibold">SEQUOIA AI</h3>
             </div>
             <button
               onClick={() => setIsOpen(false)}
