@@ -25,7 +25,9 @@ export default function LeetcodeProfile() {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const res = await fetch('https://leetcode-api-faisalshohag.vercel.app/jeevanu345');
+        const res = await fetch(
+          'https://leetcode-api-faisalshohag.vercel.app/jeevanu345'
+        );
         const data = await res.json();
         setStats(data);
       } catch (error) {
@@ -57,7 +59,9 @@ export default function LeetcodeProfile() {
   if (!stats) return null;
 
   const easyPercent = Math.round((stats.easySolved / stats.totalEasy) * 100);
-  const mediumPercent = Math.round((stats.mediumSolved / stats.totalMedium) * 100);
+  const mediumPercent = Math.round(
+    (stats.mediumSolved / stats.totalMedium) * 100
+  );
   const hardPercent = Math.round((stats.hardSolved / stats.totalHard) * 100);
 
   return (
@@ -75,11 +79,17 @@ export default function LeetcodeProfile() {
               Passionate about algorithms and problem-solving
             </p>
             <div className="mt-4 flex items-center gap-3">
-              <Badge variant="outline" className="flex items-center gap-1.5 py-1">
+              <Badge
+                variant="outline"
+                className="flex items-center gap-1.5 py-1"
+              >
                 <Trophy className="h-3.5 w-3.5 text-yellow-500" />
                 <span>Rank: {stats.ranking.toLocaleString()}</span>
               </Badge>
-              <Badge variant="outline" className="flex items-center gap-1.5 py-1">
+              <Badge
+                variant="outline"
+                className="flex items-center gap-1.5 py-1"
+              >
                 <Target className="h-3.5 w-3.5 text-primary" />
                 <span>Total Solved: {stats.totalSolved}</span>
               </Badge>
@@ -90,11 +100,13 @@ export default function LeetcodeProfile() {
             <div className="space-y-1.5">
               <div className="flex justify-between text-sm">
                 <span className="text-[#00b8a3] font-medium">Easy</span>
-                <span className="text-muted-foreground">{stats.easySolved} / {stats.totalEasy}</span>
+                <span className="text-muted-foreground">
+                  {stats.easySolved} / {stats.totalEasy}
+                </span>
               </div>
               <div className="w-full bg-[#00b8a3]/20 h-2 rounded-full overflow-hidden">
-                <div 
-                  className="bg-[#00b8a3] h-full rounded-full transition-all duration-1000 ease-out" 
+                <div
+                  className="bg-[#00b8a3] h-full rounded-full transition-all duration-1000 ease-out"
                   style={{ width: `${Math.max(easyPercent, 1)}%` }}
                 />
               </div>
@@ -103,11 +115,13 @@ export default function LeetcodeProfile() {
             <div className="space-y-1.5">
               <div className="flex justify-between text-sm">
                 <span className="text-[#ffc01e] font-medium">Medium</span>
-                <span className="text-muted-foreground">{stats.mediumSolved} / {stats.totalMedium}</span>
+                <span className="text-muted-foreground">
+                  {stats.mediumSolved} / {stats.totalMedium}
+                </span>
               </div>
               <div className="w-full bg-[#ffc01e]/20 h-2 rounded-full overflow-hidden">
-                <div 
-                  className="bg-[#ffc01e] h-full rounded-full transition-all duration-1000 ease-out" 
+                <div
+                  className="bg-[#ffc01e] h-full rounded-full transition-all duration-1000 ease-out"
                   style={{ width: `${Math.max(mediumPercent, 1)}%` }}
                 />
               </div>
@@ -116,20 +130,22 @@ export default function LeetcodeProfile() {
             <div className="space-y-1.5">
               <div className="flex justify-between text-sm">
                 <span className="text-[#ff375f] font-medium">Hard</span>
-                <span className="text-muted-foreground">{stats.hardSolved} / {stats.totalHard}</span>
+                <span className="text-muted-foreground">
+                  {stats.hardSolved} / {stats.totalHard}
+                </span>
               </div>
               <div className="w-full bg-[#ff375f]/20 h-2 rounded-full overflow-hidden">
-                <div 
-                  className="bg-[#ff375f] h-full rounded-full transition-all duration-1000 ease-out" 
+                <div
+                  className="bg-[#ff375f] h-full rounded-full transition-all duration-1000 ease-out"
                   style={{ width: `${Math.max(hardPercent, 1)}%` }}
                 />
               </div>
             </div>
           </div>
-          
+
           <div className="flex flex-col gap-2 min-w-[120px] ml-auto">
-            <Button 
-              variant="outline" 
+            <Button
+              variant="outline"
               className="w-full bg-[#FFA116] text-black hover:bg-[#FFA116]/90 hover:text-black border-none"
               onClick={handleProfileClick}
             >
