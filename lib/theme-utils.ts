@@ -207,7 +207,7 @@ export const applyInstantThemeFromCache = (): boolean => {
   try {
     const cachedTheme = localStorage.getItem('theme-cache');
     const cachedMode = localStorage.getItem('theme-mode-cache');
-    
+
     if (cachedTheme && cachedMode) {
       // Just returning true to allow the theme manager to know there is a cache
       // The actual CSS variables application is handled by applyTheme
