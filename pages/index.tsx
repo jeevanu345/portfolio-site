@@ -282,7 +282,7 @@ const Home: NextPage = () => {
             skills={skillsData.dataScience}
           />
         </div>
-        
+
         {/* LeetCode Profile Section */}
         <div className="mt-8">
           <LeetcodeProfile />
