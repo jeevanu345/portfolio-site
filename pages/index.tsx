@@ -37,6 +37,11 @@ const GitHubStats = dynamic(() => import('../components/GitHubStats'), {
   loading: () => <LoadingSpinner />,
 });
 
+const LeetcodeProfile = dynamic(() => import('../components/LeetcodeProfile'), {
+  ssr: false,
+  loading: () => <LoadingSpinner />,
+});
+
 const skillsData = {
   languages: ['C++', 'Python', 'C', 'Java', 'JavaScript', 'HTML/CSS'],
   frameworks: [
@@ -276,6 +281,11 @@ const Home: NextPage = () => {
             title="Data Science & ML"
             skills={skillsData.dataScience}
           />
+        </div>
+        
+        {/* LeetCode Profile Section */}
+        <div className="mt-8">
+          <LeetcodeProfile />
         </div>
       </div>
 

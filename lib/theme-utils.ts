@@ -193,8 +193,6 @@ export const loadThemePreference = (): {
     const saved = localStorage.getItem('theme-preference');
     if (saved) {
       const parsed = JSON.parse(saved);
-      // Always enforce the default classic theme on load as per user request
-      parsed.themeName = 'default';
       return parsed;
     }
     return null;
@@ -206,8 +204,19 @@ export const loadThemePreference = (): {
 // Utility to instantly apply saved theme from localStorage CSS variables
 // This provides immediate theme application without waiting for theme loading
 export const applyInstantThemeFromCache = (): boolean => {
-  // Always return false to disable instant cache and ensure the classic default theme is used initially
-  return false;
+  try {
+    const cachedTheme = localStorage.getItem('theme-cache');
+    const cachedMode = localStorage.getItem('theme-mode-cache');
+    
+    if (cachedTheme && cachedMode) {
+      // Just returning true to allow the theme manager to know there is a cache
+      // The actual CSS variables application is handled by applyTheme
+      return true;
+    }
+    return false;
+  } catch {
+    return false;
+  }
 };
 
 // Enhanced save function that also caches theme data for instant application
