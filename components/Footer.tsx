@@ -13,9 +13,9 @@ function Footer(): JSX.Element {
         <div className="mt-2 mb-2">
           <Anchor
             href="https://portfolio-site-arch-linux-style.vercel.app/"
-            className="inline-flex items-center justify-center px-8 py-4 text-xl font-extrabold text-white bg-gradient-to-r from-blue-500 to-purple-600 rounded-full hover:from-blue-600 hover:to-purple-700 hover:scale-105 transition-all duration-300 shadow-lg shadow-blue-500/30 ring-2 ring-purple-500/50"
+            className="inline-flex items-center justify-center px-8 py-4 text-xl font-bold bg-primary text-primary-foreground rounded-full hover:bg-primary/90 hover:scale-105 transition-all duration-300 shadow-lg ring-2 ring-primary/20"
           >
-            Explore Linux Version 🐧
+            Open Linux
           </Anchor>
         </div>
       </div>
