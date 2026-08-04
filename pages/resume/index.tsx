@@ -72,7 +72,7 @@ const Resume: NextPage = () => {
           Download my complete resume or view it directly in your browser.
         </p>
         <Badge variant="secondary" className="mt-2">
-          Last Updated: 05/29/2026
+          Last Updated: 08/04/2026
         </Badge>
       </div>
 
