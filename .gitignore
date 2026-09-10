@@ -36,3 +36,7 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+# local editor and package-manager state
+.vscode/
+.yarn/install-state.gz

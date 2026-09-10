@@ -1,65 +1,67 @@
-# Personal portfolio with basic design
+# Jeevan U — Personal Portfolio
 
-This is a [Next.js](https://nextjs.org/) portfolio styled with [Tailwind CSS](https://tailwindcss.com/).
+Personal portfolio built with Next.js and Tailwind CSS to present projects, writing, résumé information, and interactive experiments.
 
-## Getting Started
+## Highlights
 
-### Install the packages:
+- Project and résumé routes backed by structured local content.
+- MDX-based blog pages.
+- Theme controls and reusable UI components.
+- Optional AI-chat experience exposed through API routes.
+- Vercel analytics and performance instrumentation.
 
-```bash
-npm i
-# or
-yarn
-```
+## Technology
 
-### To make the contact form work
+- Next.js 12 and React 17
+- TypeScript
+- Tailwind CSS
+- MDX/Markdown rendering
+- Radix-based UI components
+- Vercel deployment tooling
 
-- Create a account in [emailjs](https://www.emailjs.com/) create also new Outlook or Gmail account to be able
-  to send email.
-- Create a new service, select and log in to your newly created outlook or gmail account on EmailJS.
-- Go back to the dashboard and get the Service ID copy it.
-- Create a .env file in your root folder
-
-```
-NEXT_PUBLIC_USER_ID = 'YOUR_USER_ID'
-NEXT_PUBLIC_TEMPLATE_ID = 'template_fqqqb9g'
-NEXT_PUBLIC_SERVICE_ID = 'YOUR_SERVICE_ID'
-```
-
-Replace your user id and service ID with values in your EmailJS service.
-
-### Run the development server:
+## Local development
 
 ```bash
-npm run dev
-# or
+yarn install
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open `http://localhost:3000`.
 
-### To open video conferencing application
+## Validation commands
 
-- Create a account in [100ms](https://100ms.live/).
-- Log in to your newly created dashboard and go to developer settings.
-- Checkout to _video-call_ branch.
-- Copy and paste below keys into your .env file.
-
-```
-HMS_TEMPLATE_NAME = <template name>
-HMS_TOKEN_ENDPOINT = <endpoint url>
-HMS_ACCESS_KEY = <access key>
-HMS_SECRET = <secret key>
+```bash
+yarn format:check
+yarn lint
+yarn build
 ```
 
-<a href="https://www.buymeacoffee.com/jeevanu345" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 40px !important;width: 140px !important;" ></a>
+These commands should be run before publishing changes. A command should not be represented as passing until it has completed successfully in a clean environment.
 
-## Contributing
+## Configuration
 
-Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributiors who wants to make this website better can make contribution,which will be **greatly appreciated**.
+Some integrations require local environment variables. Keep them in an untracked `.env.local` file and never commit API keys or service credentials. Review the code path for each optional integration before enabling it in a public deployment.
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Added some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+## Content and privacy
+
+- Keep one current public résumé and remove obsolete copies.
+- Verify every external profile, project link, and contact method.
+- Confirm attribution and redistribution rights for fonts, images, icons, and template-derived material.
+- Avoid publishing personal details that are not required for professional contact.
+
+## Repository structure
+
+```text
+pages/       Next.js routes and API handlers
+components/  reusable interface components
+data/        structured portfolio content
+blogs/       MDX posts
+public/      public static assets
+styles/      global and component styling
+```
+
+## Current limitations
+
+- Automated accessibility and link checks are not yet configured.
+- Performance results are not yet versioned or reproducible.
+- The dependency set includes older framework versions and requires a deliberate upgrade plan.
