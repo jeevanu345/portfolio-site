@@ -65,3 +65,15 @@ styles/      global and component styling
 - Automated accessibility and link checks are not yet configured.
 - Performance results are not yet versioned or reproducible.
 - The dependency set includes older framework versions and requires a deliberate upgrade plan.
+
+## Jeevan AI
+
+The portfolio belongs to **Jeevan U Gowda**. Both the floating chat and `/sequoia` use the same chat component. Set `NVIDIA_API_KEY` only in server environment configuration; never prefix it with `NEXT_PUBLIC_`. Deploy with a Next.js server (for example Vercel), not a static GitHub Pages export.
+
+History uses `jeevan-u-gowda:chat:v1` in this browser’s localStorage, with a random UUID, a versioned schema, at most 40 messages of 8,000 characters each, and 30 days of inactivity expiry. Different browsers/devices do not share history. People sharing the same browser profile share its storage; use **New chat** on a shared device. Storage failure falls back to memory. Prompts are sent to NVIDIA for answers, but are not sent to portfolio analytics or persisted by this API. New chat cancels the pending response and resets only local history. Chat text is rendered as escaped text, never executable HTML.
+
+The old external deletion endpoint is retired. Dummy credential authentication is disabled; real authentication must be implemented before enabling sign-in. Configure `NEXTAUTH_SECRET` server-side if using NextAuth.
+
+The like button retains browser-local reactions and displays the configured aggregate count. It no longer repeatedly signs in with dummy credentials or uses that bypass to write aggregate data. Enable authenticated writes only with a real account system.
+
+Run `node --test tests/chat.test.cjs`, `yarn lint`, `yarn tsc --noEmit`, and `yarn build` to verify changes.

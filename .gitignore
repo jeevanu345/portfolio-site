@@ -41,3 +41,6 @@ yarn-error.log*
 .vscode/
 .yarn/install-state.gz
 /source.md
+
+.env.*
+!.env.example

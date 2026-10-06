@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
-import { fetchLikes, incrementLikesTo, formatNumber } from '../helpers/helpers';
-import { useSession, signIn, signOut } from 'next-auth/react';
+import { fetchLikes, formatNumber } from '../helpers/helpers';
 import ReactGA from 'react-ga4';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
@@ -13,82 +12,63 @@ import {
 import { cn } from '@/lib/utils';
 
 export default function LikeCounter() {
-  const { status } = useSession();
   const [likeCount, setLikeCount] = useState(0);
   const [likeIncrements, setLikeIncrements] = useState(0);
-  const [oldLikeIncrements, setOldLikeIncrements] = useState(0);
-  const [updateIncrementTimeout, setUpdateIncrementTimeout] =
-    useState<any>(null);
-  const [authInterval, setAuthInterval] = useState<any>(null);
-  const [showEmojiTimeout, setShowEmojiTimeout] = useState<any>(null);
+  const [showEmojiTimeout, setShowEmojiTimeout] = useState<
+    ReturnType<typeof setTimeout> | undefined
+  >(undefined);
   const [emojiVisible, setEmojiVisible] = useState(false);
 
   useEffect(() => {
-    startAuthInterval();
     getLikes();
-    window.addEventListener('beforeunload', () => {
-      signOut();
-    });
   }, []);
 
-  useEffect(() => {
-    clearTimeout(updateIncrementTimeout);
-    if (likeIncrements - oldLikeIncrements === 0) {
-      return;
-    }
-    updateLikesInDB();
-  }, [likeIncrements]);
-
-  const updateLikesInDB = () => {
-    setUpdateIncrementTimeout(
-      setTimeout(() => {
-        incrementLikesTo(likeIncrements - oldLikeIncrements).then(res => {
-          if (res.status === 401) {
-            startAuthInterval();
-          }
-        });
-      }, 3000)
-    );
-  };
-
-  useEffect(() => {
-    if (status === 'authenticated') {
-      clearInterval(authInterval);
-      return;
-    }
-  }, [status]);
-
-  const startAuthInterval = () => {
-    setAuthInterval(
-      setInterval(() => {
-        signIn('credentials', { redirect: false });
-      }, 3000)
-    );
-  };
+  useEffect(
+    () => () => {
+      if (showEmojiTimeout) clearTimeout(showEmojiTimeout);
+    },
+    [showEmojiTimeout]
+  );
 
   const getIncrementsFromLocalStorage = () => {
-    let likeIncrements = parseInt(
-      localStorage.getItem('likeIncrements') || '0'
-    );
-    if (likeIncrements < 0 || likeIncrements > 9) {
+    let likeIncrements = 0;
+    try {
+      likeIncrements = parseInt(localStorage.getItem('likeIncrements') || '0');
+    } catch {}
+    if (
+      !Number.isFinite(likeIncrements) ||
+      likeIncrements < 0 ||
+      likeIncrements > 9
+    ) {
       likeIncrements = 0;
     }
-    setOldLikeIncrements(likeIncrements);
     return likeIncrements;
   };
 
   const getLikes = () => {
-    fetchLikes().then(res => {
-      if (res && res.likes) {
-        const previousIncrement = getIncrementsFromLocalStorage();
-        changeLikeIncrements(previousIncrement);
-        setLikeCount(res.likes + previousIncrement);
-      }
-    });
+    fetchLikes()
+      .then(res => {
+        if (
+          res &&
+          typeof res.likes === 'number' &&
+          Number.isFinite(res.likes)
+        ) {
+          const previousIncrement = getIncrementsFromLocalStorage();
+          changeLikeIncrements(previousIncrement);
+          setLikeCount(res.likes + previousIncrement);
+        }
+      })
+      .catch(() => {
+        const previous = getIncrementsFromLocalStorage();
+        changeLikeIncrements(previous);
+        setLikeCount(previous);
+      });
   };
 
   const changeLikeIncrements = (increment: number) => {
-    localStorage.setItem('likeIncrements', increment.toString());
+    try {
+      localStorage.setItem('likeIncrements', increment.toString());
+    } catch {}
     setLikeIncrements(increment);
   };
 
@@ -112,7 +92,7 @@ export default function LikeCounter() {
   };
 
   const toggleEmoji = () => {
-    clearTimeout(showEmojiTimeout);
+    showEmojiTimeout && clearTimeout(showEmojiTimeout);
     setEmojiVisible(true);
     setShowEmojiTimeout(
       setTimeout(() => {
@@ -146,7 +126,7 @@ export default function LikeCounter() {
     }
   };
 
-  if (likeCount && status === 'authenticated') {
+  if (likeCount >= 0) {
     return (
       <TooltipProvider>
         <div className="flex flex-col items-center">
