@@ -28,7 +28,7 @@ export default function AIChatWidget() {
       <button
         ref={trigger}
         type="button"
-        aria-label={open ? 'Minimize Jeevan AI' : 'Open Jeevan AI'}
+        aria-label={open ? 'Minimize Sequoia AI' : 'Open Sequoia AI'}
         aria-expanded={open}
         aria-controls="jeevan-chat-widget"
         onClick={() => {

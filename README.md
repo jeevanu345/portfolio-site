@@ -66,7 +66,7 @@ styles/      global and component styling
 - Performance results are not yet versioned or reproducible.
 - The dependency set includes older framework versions and requires a deliberate upgrade plan.
 
-## Jeevan AI
+## Sequoia AI
 
 The portfolio belongs to **Jeevan U Gowda**. Both the floating chat and `/sequoia` use the same chat component. Set `NVIDIA_API_KEY` only in server environment configuration; never prefix it with `NEXT_PUBLIC_`. Deploy with a Next.js server (for example Vercel), not a static GitHub Pages export.
 

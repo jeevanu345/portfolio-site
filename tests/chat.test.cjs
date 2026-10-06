@@ -35,7 +35,7 @@ test('API validates input, limits methods and never returns provider internals',
     let request;
     global.fetch=async (_url,options)=>{request=JSON.parse(options.body); return {ok:true,json:async()=>({choices:[{message:{content:'About Jeevan'}}],secret:'private'})};};
     res=response(); await handler({method:'POST',body:{messages:[{role:'user',content:'Hello'}]}},res);
-    assert.equal(res.code,200); assert.equal(res.headers['Cache-Control'],'private, no-store'); assert.equal(res.body.secret,undefined); assert.match(request.messages[0].content,/Jeevan U Gowda/);
+    assert.equal(res.code,200); assert.equal(res.headers['Cache-Control'],'private, no-store'); assert.equal(res.body.secret,undefined); assert.match(request.messages[0].content,/Jeevan U Gowda/); assert.match(request.messages[0].content,/You are Sequoia AI/);
     global.fetch=async()=>({ok:false,status:401,json:async()=>({secret:'private'})});
     res=response(); await handler({method:'POST',body:{messages:[{role:'user',content:'Hello B'}]}},res); assert.equal(res.code,502); assert.equal(res.body.secret,undefined);
   } finally { global.fetch=original; if(previous===undefined)delete process.env.NVIDIA_API_KEY; else process.env.NVIDIA_API_KEY=previous; }

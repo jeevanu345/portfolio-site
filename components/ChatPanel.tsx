@@ -25,14 +25,14 @@ export default function ChatPanel({ onClose }: { onClose?: () => void }) {
   };
   return (
     <section
-      aria-label="Jeevan AI chat"
+      aria-label="Sequoia AI chat"
       className="flex flex-col h-full min-h-0 bg-background text-foreground"
     >
       <header className="border-b border-border p-4 flex items-center justify-between gap-2">
         <div className="flex items-center gap-3">
           <Bot aria-hidden="true" size={24} />
           <div>
-            <h1 className="font-semibold">Jeevan AI</h1>
+            <h1 className="font-semibold">Sequoia AI</h1>
             <p className="text-xs text-muted-foreground">
               Jeevan U Gowda’s portfolio assistant
             </p>
@@ -80,7 +80,7 @@ export default function ChatPanel({ onClose }: { onClose?: () => void }) {
         {!messages.length && (
           <div className="text-center py-8 space-y-4">
             <Bot className="mx-auto text-primary" size={32} />
-            <h2 className="text-xl">Ask Jeevan AI</h2>
+            <h2 className="text-xl">Ask Sequoia AI</h2>
             <p className="text-sm text-muted-foreground">
               Ask about Jeevan’s projects, skills, or education.
             </p>
@@ -110,13 +110,17 @@ export default function ChatPanel({ onClose }: { onClose?: () => void }) {
             className={`flex gap-2 ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
           >
             {message.role === 'assistant' && (
-              <Bot aria-label="Jeevan AI" className="shrink-0 mt-2" size={20} />
+              <Bot
+                aria-label="Sequoia AI"
+                className="shrink-0 mt-2"
+                size={20}
+              />
             )}
             <div
               className={`min-w-0 max-w-[85%] rounded-2xl px-4 py-3 text-sm whitespace-pre-wrap break-words ${message.role === 'user' ? 'bg-primary text-primary-foreground rounded-br-md' : 'bg-muted text-foreground rounded-bl-md'}`}
             >
               <span className="sr-only">
-                {message.role === 'user' ? 'You: ' : 'Jeevan AI: '}
+                {message.role === 'user' ? 'You: ' : 'Sequoia AI: '}
               </span>
               {message.content}
             </div>
@@ -127,7 +131,7 @@ export default function ChatPanel({ onClose }: { onClose?: () => void }) {
             role="status"
             className="text-sm text-muted-foreground animate-pulse"
           >
-            Jeevan AI is thinking…
+            Sequoia AI is thinking…
           </p>
         )}
         {error && (
@@ -162,7 +166,7 @@ export default function ChatPanel({ onClose }: { onClose?: () => void }) {
         <div className="flex items-end gap-2">
           <textarea
             ref={textarea}
-            aria-label="Message Jeevan AI"
+            aria-label="Message Sequoia AI"
             rows={2}
             maxLength={MAX_CONTENT}
             value={input}

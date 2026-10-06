@@ -12,8 +12,8 @@ export default function AskSequoiaButton({
   return (
     <div className="flex flex-col items-center">
       <Button
-        aria-label="Ask Jeevan AI"
-        title="Ask Jeevan AI"
+        aria-label="Ask Sequoia AI"
+        title="Ask Sequoia AI"
         variant="outline"
         size="icon"
         className="w-10 h-10 rounded-full border-border bg-background"
@@ -21,7 +21,7 @@ export default function AskSequoiaButton({
       >
         <Bot size={22} />
       </Button>
-      <span className="mt-2 text-sm text-foreground">Jeevan AI</span>
+      <span className="mt-2 text-sm text-foreground">Sequoia AI</span>
     </div>
   );
 }
