@@ -1,6 +1,5 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
-import LikeCounter from './LikeCounter';
 import AskSequoiaButton from './AskSequoiaButton';
 import FloatingThemeSelectorLazy from './FloatingThemeSelectorLazy';
 
@@ -21,10 +20,7 @@ export const FloatingButtonGroup: React.FC<FloatingButtonGroupProps> = ({
         className
       )}
     >
-      {/* Like Counter - Top */}
-      <LikeCounter />
-
-      {/* Floating Theme Selector - Middle */}
+      {/* Floating Theme Selector */}
       <FloatingThemeSelectorLazy />
 
       {/* Ask Sequoia Button - Bottom */}
