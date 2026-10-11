@@ -5,10 +5,10 @@
 - Links: jeevanu345 (GitHub)
 
 ## Education
-- B.E. in Information Science & Engineering, B.M.S College of Engineering, VTU (Aug 2022 – Jul 2026). GPA: 8.4/10.0
+- B.E. in Information Science & Engineering, B.M.S College of Engineering, VTU (Aug 2022 – Jul 2026).
 - Coursework: Data Structures & Algorithms, OOPs, DBMS, Operating Systems, Networks, Software Engineering, Machine Learning
-- 12th Grade (Karnataka State Board) - 90%
-- 10th Grade (CBSE Board) - 90%
+- 12th Grade (Karnataka State Board)
+- 10th Grade (CBSE Board)
 
 ## Skills
 - Languages: C++, Python, C, Java, JavaScript, HTML/CSS

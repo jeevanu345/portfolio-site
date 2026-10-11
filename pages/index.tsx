@@ -196,9 +196,6 @@ const Home: NextPage = () => {
             </div>
             <div className="text-light text-muted-foreground mt-2 space-y-1">
               <p>
-                <span className="font-medium text-foreground">GPA:</span>{' '}
-                8.4/10.0
-                {' | '}
                 <span className="font-medium text-foreground">
                   Expected Graduation:
                 </span>{' '}
@@ -226,14 +223,14 @@ const Home: NextPage = () => {
             <div className="text-light text-muted-foreground space-y-2">
               <p>
                 <span className="font-medium text-foreground">12th Grade</span>{' '}
-                (Karnataka State Board) — 90%{' '}
+                (Karnataka State Board){' '}
                 <span className="text-muted-foreground">
                   | Apr 2021 – Jun 2022
                 </span>
               </p>
               <p>
                 <span className="font-medium text-foreground">10th Grade</span>{' '}
-                (CBSE Board) — 90%{' '}
+                (CBSE Board){' '}
                 <span className="text-muted-foreground">| 2019 – 2020</span>
               </p>
             </div>
