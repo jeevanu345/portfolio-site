@@ -10,11 +10,11 @@ const works = [
     href: 'https://renure.app',
   },
   {
-    title: 'TapCart',
-    category: 'NFC-based smart retail system',
+    title: 'Taplane',
+    category: 'Tap. Shop. Go.',
     description:
       'A smart retail prototype that brings product browsing, checkout, order management, and inventory together for customers and stores through an NFC-oriented shopping experience.',
-    href: 'https://github.com/jeevanu345/TapCart',
+    href: 'https://github.com/jeevanu345/Taplane',
   },
 ];
 

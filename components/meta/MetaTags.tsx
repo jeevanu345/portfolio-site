@@ -50,31 +50,33 @@ export default function MetaTags() {
 
   return (
     <Head>
+      <link rel="icon" href="/meta/favicon.svg?v=j1" type="image/svg+xml" />
+      <link rel="shortcut icon" href="/favicon.ico?v=j1" />
       <link
         rel="apple-touch-icon"
         sizes="180x180"
-        href="/meta/apple-touch-icon.png"
+        href="/meta/apple-touch-icon.png?v=j1"
       />
       <link
         rel="icon"
         type="image/png"
         sizes="32x32"
-        href="/meta/favicon-32x32.png"
+        href="/meta/favicon-32x32.png?v=j1"
       />
       <link
         rel="icon"
         type="image/png"
         sizes="16x16"
-        href="/meta/favicon-16x16.png"
+        href="/meta/favicon-16x16.png?v=j1"
       />
-      <link rel="manifest" href="/meta/site.webmanifest" />
+      <link rel="manifest" href="/meta/site.webmanifest?v=j1" />
       <link
         rel="mask-icon"
-        href="/meta/safari-pinned-tab.svg"
-        color="#5bbad5"
+        href="/meta/safari-pinned-tab.svg?v=j1"
+        color="#000000"
       />
-      <meta name="msapplication-TileColor" content="#2b5797" />
-      <meta name="theme-color" content="#162447" />
+      <meta name="msapplication-TileColor" content="#000000" />
+      <meta name="theme-color" content="#000000" />
 
       <title>{title}</title>
       <link rel="canonical" href={canonical} />

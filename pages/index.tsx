@@ -250,7 +250,7 @@ const Home: NextPage = () => {
               Research Paper
             </div>
             <div className="text-lg sm:text-xl">
-              TapCart: NFC-Based Payment Interface
+              Taplane: NFC-Based Payment Interface
             </div>
             <div className="text-light text-muted-foreground mt-2">
               Proposed secure NFC-based merchant payment architecture for

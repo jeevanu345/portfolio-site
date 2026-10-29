@@ -75,7 +75,7 @@
     "category": "AI/ML Project"
   },
   {
-    "title": "TapCart: NFC-Based Smart Retail System",
+    "title": "Taplane: NFC-Based Smart Retail System",
     "tagline": "IoT-integrated retail platform enabling tap-to-shop purchases and real-time inventory sync across devices via NFC technology.",
     "year": 2024,
     "badges": [
@@ -86,7 +86,7 @@
       "Express.js",
       "Cloud APIs"
     ],
-    "github_url": "https://github.com/jeevanu345/tapcart",
+    "github_url": "https://github.com/jeevanu345/Taplane",
     "demo_url": "",
     "stars": 0,
     "priority": 5,
