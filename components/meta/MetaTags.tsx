@@ -10,12 +10,12 @@ export default function MetaTags() {
   const isHome = pathname === '/';
   const title =
     pathname === '/projects'
-      ? 'Projects | Jeevan U Gowda'
-      : 'Jeevan U Gowda (G1U / JWEINU) | Developer Portfolio';
+      ? 'Projects | Jeevan U'
+      : 'Jeevan U (JWEINU) | Developer Portfolio';
   const description =
     pathname === '/projects'
-      ? 'Explore Jeevan U Gowda’s software projects in full-stack development, AI/ML, distributed systems, RAG, and IoT.'
-      : 'Jeevan U Gowda, also known as G1U and JWEINU. Full-stack developer and AI/ML enthusiast in Bengaluru. Explore my projects at jeevanu.com.';
+      ? 'Explore Jeevan U’s software projects in full-stack development, AI/ML, distributed systems, RAG, and IoT.'
+      : 'Jeevan U, also known as JWEINU (Jeevan U Gowda). Full-stack developer and AI/ML enthusiast in Bengaluru. Explore my projects at jeevanu.com.';
   const indexable = isHome || pathname === '/projects';
   const structuredData = {
     '@context': 'https://schema.org',
@@ -23,11 +23,10 @@ export default function MetaTags() {
       {
         '@type': 'Person',
         '@id': `${siteUrl}/#person`,
-        name: 'Jeevan U Gowda',
+        name: 'Jeevan U',
         alternateName: [
-          'G1U',
           'JWEINU',
-          'Jeevan U',
+          'Jeevan U Gowda',
           'Jeevan Gowda',
           'jeevanu345',
         ],
@@ -40,8 +39,8 @@ export default function MetaTags() {
       {
         '@type': 'WebSite',
         '@id': `${siteUrl}/#website`,
-        name: 'Jeevan U Gowda',
-        alternateName: ['G1U', 'JWEINU', 'Jeevan U', 'jeevanu.com'],
+        name: 'Jeevan U',
+        alternateName: ['JWEINU', 'Jeevan U Gowda', 'jeevanu.com'],
         url: `${siteUrl}/`,
         author: { '@id': `${siteUrl}/#person` },
       },
@@ -88,10 +87,10 @@ export default function MetaTags() {
       <link rel="canonical" href={canonical} />
       <meta name="title" content={title} />
       <meta name="description" content={description} />
-      <meta name="author" content="Jeevan U Gowda (jeevanu345)" />
+      <meta name="author" content="Jeevan U (Jeevan U Gowda, jeevanu345)" />
       <meta
         name="keywords"
-        content="jeevanu345, jeevan u gowda portfolio, jeevan gowda, full stack developer, AI ML engineer, BMSCE, information science, raftkv, RAG, IoT projects"
+        content="Jeevan U, JWEINU, jeevanu345, jeevan u gowda portfolio, jeevan gowda, full stack developer, AI ML engineer, BMSCE, information science, raftkv, RAG, IoT projects"
       />
       <meta
         name="robots"
@@ -103,7 +102,7 @@ export default function MetaTags() {
 
       <meta property="og:type" content="website" />
       <meta property="og:url" content={canonical} />
-      <meta property="og:site_name" content="Jeevan U Gowda" />
+      <meta property="og:site_name" content="Jeevan U" />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta
