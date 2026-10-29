@@ -167,7 +167,7 @@ const Home: NextPage = () => {
 
       {/* Education Section */}
       <div className="mt-20 sm:mt-32">
-        <div className="flex justify-between mb-6 items-center">
+        <div className="flex flex-wrap justify-between gap-3 mb-6 items-center">
           <div className="text-4xl sm:text-5xl font-medium">Education</div>
           <Button
             variant="outline"
@@ -188,6 +188,7 @@ const Home: NextPage = () => {
             </div>
             <div className="text-lg sm:text-xl">
               <Anchor
+                className="!whitespace-normal"
                 href="https://www.google.com/search?q=bms+college+of+engineering+bengaluru"
                 onClick={() => handleLinkClick('BMSCE Link')}
               >

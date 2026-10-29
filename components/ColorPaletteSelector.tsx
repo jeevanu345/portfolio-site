@@ -87,7 +87,7 @@ const ColorPaletteSelector: React.FC<ColorPaletteSelectorProps> = ({
             });
             toggleMode();
           }}
-          className="flex items-center gap-1.5"
+          className="flex h-11 items-center gap-1.5 sm:h-8"
         >
           {mode === 'light' ? (
             <Moon className="h-3.5 w-3.5" />
@@ -192,12 +192,17 @@ const ColorPaletteSelector: React.FC<ColorPaletteSelectorProps> = ({
           <Button
             size="sm"
             onClick={handleApply}
-            className="flex items-center gap-1.5"
+            className="flex h-11 items-center gap-1.5 sm:h-8"
           >
             <Check className="h-3.5 w-3.5" />
             Apply
           </Button>
-          <Button size="sm" variant="outline" onClick={handleCancel}>
+          <Button
+            size="sm"
+            variant="outline"
+            className="h-11 sm:h-8"
+            onClick={handleCancel}
+          >
             Cancel
           </Button>
         </div>

@@ -35,7 +35,11 @@ export default function WorksSection() {
             <p className="mb-8 mt-4 leading-relaxed text-muted-foreground">
               {work.description}
             </p>
-            <Button asChild variant="outline" className="mt-auto self-start">
+            <Button
+              asChild
+              variant="outline"
+              className="mt-auto h-11 self-start sm:h-9"
+            >
               <a
                 href={work.href}
                 target="_blank"
