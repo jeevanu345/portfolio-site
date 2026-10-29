@@ -15,8 +15,8 @@ export const FloatingButtonGroup: React.FC<FloatingButtonGroupProps> = ({
   return (
     <div
       className={cn(
-        'select-none z-30 fixed right-2 md:right-12 top-1/4',
-        'flex flex-col items-center gap-6 md:gap-10',
+        'select-none z-30 relative mx-auto mb-24 mt-6 w-fit sm:m-0 sm:fixed sm:right-2 md:right-12 sm:top-1/4',
+        'flex flex-row sm:flex-col items-center gap-6 md:gap-10',
         className
       )}
     >
