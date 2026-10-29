@@ -11,19 +11,10 @@ interface ColorPaletteSelectorProps {
 const ColorPaletteSelector: React.FC<ColorPaletteSelectorProps> = ({
   className = '',
 }) => {
-  const {
-    currentTheme,
-    themes,
-    mode,
-    setTheme,
-    toggleMode,
-    isLoading,
-    previewTheme,
-    cancelPreview,
-  } = useThemeManager();
+  const { currentTheme, themes, mode, setTheme, toggleMode, isLoading } =
+    useThemeManager();
 
   const [selectedTheme, setSelectedTheme] = useState<string | null>(null);
-  const [hoveredTheme, setHoveredTheme] = useState<string | null>(null);
 
   const handleThemeClick = useCallback(
     (themeName: string) => {
@@ -33,13 +24,11 @@ const ColorPaletteSelector: React.FC<ColorPaletteSelectorProps> = ({
       // If clicking the already-applied theme → deselect
       if (currentTheme?.name === themeName) {
         setSelectedTheme(null);
-        cancelPreview();
         return;
       }
 
-      // Select this theme for preview
+      // Keep the selection local until Apply is clicked.
       setSelectedTheme(themeName);
-      previewTheme(theme, mode);
 
       ReactGA.event({
         category: 'Theme',
@@ -48,7 +37,7 @@ const ColorPaletteSelector: React.FC<ColorPaletteSelectorProps> = ({
         value: 1,
       });
     },
-    [themes, currentTheme, mode, previewTheme, cancelPreview]
+    [themes, currentTheme]
   );
 
   const handleApply = useCallback(() => {
@@ -65,43 +54,8 @@ const ColorPaletteSelector: React.FC<ColorPaletteSelectorProps> = ({
   }, [selectedTheme, setTheme]);
 
   const handleCancel = useCallback(() => {
-    cancelPreview();
     setSelectedTheme(null);
-  }, [cancelPreview]);
-
-  const handleMouseEnter = useCallback(
-    (themeName: string) => {
-      const theme = themes.find(t => t.name === themeName);
-      if (theme && theme.name !== currentTheme?.name) {
-        setHoveredTheme(themeName);
-        previewTheme(theme, mode);
-      }
-    },
-    [themes, currentTheme, mode, previewTheme]
-  );
-
-  const handleMouseLeave = useCallback(() => {
-    if (hoveredTheme) {
-      setHoveredTheme(null);
-      // If we have a selected theme, re-preview that instead of cancelling
-      if (selectedTheme && selectedTheme !== currentTheme?.name) {
-        const theme = themes.find(t => t.name === selectedTheme);
-        if (theme) {
-          previewTheme(theme, mode);
-          return;
-        }
-      }
-      cancelPreview();
-    }
-  }, [
-    hoveredTheme,
-    selectedTheme,
-    currentTheme,
-    themes,
-    mode,
-    previewTheme,
-    cancelPreview,
-  ]);
+  }, []);
 
   const isThemeActive = (themeName: string) =>
     currentTheme?.name === themeName && !selectedTheme;
@@ -144,26 +98,28 @@ const ColorPaletteSelector: React.FC<ColorPaletteSelectorProps> = ({
         </Button>
       </div>
 
+      <p className="mb-4 text-sm text-muted-foreground">
+        Select a palette, then click Apply to change the colors.
+      </p>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
         {themes.map(theme => {
           const colors = theme.colors[mode];
           const isApplied = isThemeActive(theme.name);
           const isSelected = selectedTheme === theme.name;
-          const isHovered = hoveredTheme === theme.name;
 
           return (
             <button
               key={theme.name}
               onClick={() => handleThemeClick(theme.name)}
-              onMouseEnter={() => handleMouseEnter(theme.name)}
-              onMouseLeave={handleMouseLeave}
+              type="button"
+              aria-pressed={isSelected || isApplied}
               className={`group relative flex flex-col items-center p-3 rounded-lg border-2 transition-all duration-200 cursor-pointer ${
                 isApplied
                   ? 'border-primary ring-2 ring-primary/30 scale-[1.02]'
                   : isSelected
                     ? 'border-primary/60 ring-1 ring-primary/20 scale-[1.01]'
                     : 'border-border hover:border-primary/50 hover:scale-[1.01]'
-              } ${isHovered ? 'border-primary/70 shadow-md' : ''}`}
+              }`}
               style={{
                 backgroundColor:
                   mode === 'light' ? colors.background : colors.card,
@@ -227,7 +183,7 @@ const ColorPaletteSelector: React.FC<ColorPaletteSelectorProps> = ({
       {selectedTheme && selectedTheme !== currentTheme?.name && (
         <div className="mt-4 flex items-center justify-center gap-3 animate-in fade-in slide-in-from-top-2 duration-200">
           <span className="text-sm text-muted-foreground">
-            Previewing{' '}
+            Selected{' '}
             <span className="font-medium text-foreground">
               {themes.find(t => t.name === selectedTheme)?.displayName ||
                 selectedTheme}
