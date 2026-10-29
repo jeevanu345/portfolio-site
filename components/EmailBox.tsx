@@ -1,4 +1,4 @@
-import { createRef, useEffect, useState } from 'react';
+import { useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
 import ReactGA from 'react-ga4';
 import { Button } from '@/components/ui/button';
@@ -10,80 +10,52 @@ import { toast } from 'sonner';
 export default function EmailBox() {
   const [loading, setLoading] = useState(false);
 
-  const serviceID = process.env.NEXT_PUBLIC_SERVICE_ID;
-  const templateID = process.env.NEXT_PUBLIC_TEMPLATE_ID;
-  const subjectRef = createRef<HTMLTextAreaElement>();
-  const senderNameRef = createRef<HTMLInputElement>();
-  const socialIdRef = createRef<HTMLInputElement>();
+  // EmailJS public browser identifiers; the recipient is fixed in the template.
+  const serviceID = 'service_h0ee3dl';
+  const templateID = 'template_58dt1zc';
+  const publicKey = 'U1nZSdwZnpvjua1Xu';
+  const sendingRef = useRef(false);
+  const subjectRef = useRef<HTMLTextAreaElement>(null);
+  const senderNameRef = useRef<HTMLInputElement>(null);
+  const socialIdRef = useRef<HTMLInputElement>(null);
 
-  useEffect(() => {
-    // @ts-ignore
-    emailjs.init(process.env.NEXT_PUBLIC_USER_ID);
-  }, []);
+  function recentEmailTimestamps(): number[] {
+    try {
+      const stored = JSON.parse(
+        localStorage.getItem('emailTimestamps') || '[]'
+      );
+      if (!Array.isArray(stored)) return [];
+      return stored.filter(
+        timestamp =>
+          typeof timestamp === 'number' &&
+          Date.now() - timestamp < 24 * 60 * 60 * 1000
+      );
+    } catch {
+      return [];
+    }
+  }
 
   function canSendEmail(): boolean {
-    const emailTimestamps = localStorage.getItem('emailTimestamps');
-    if (!emailTimestamps) return true;
-
-    const timestamps = JSON.parse(emailTimestamps);
-    const now = Date.now();
-    const twentyFourHours = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
-
-    // Filter out timestamps older than 24 hours
-    const recentTimestamps = timestamps.filter((timestamp: number) => {
-      return now - timestamp < twentyFourHours;
-    });
-
-    // Allow up to 2 emails per 24 hours
-    return recentTimestamps.length < 2;
+    return recentEmailTimestamps().length < 2;
   }
 
   function getRemainingTime(): string {
-    const emailTimestamps = localStorage.getItem('emailTimestamps');
-    if (!emailTimestamps) return '';
-
-    const timestamps = JSON.parse(emailTimestamps);
-    const now = Date.now();
-    const twentyFourHours = 24 * 60 * 60 * 1000;
-
-    // Filter out timestamps older than 24 hours
-    const recentTimestamps = timestamps.filter((timestamp: number) => {
-      return now - timestamp < twentyFourHours;
-    });
-
-    if (recentTimestamps.length === 0) return '';
-
-    // Find the oldest timestamp in the recent list
-    const oldestTimestamp = Math.min(...recentTimestamps);
-    const timeDiff = now - oldestTimestamp;
-    const remainingTime = twentyFourHours - timeDiff;
-
-    const hours = Math.floor(remainingTime / (60 * 60 * 1000));
-    const minutes = Math.floor(
-      (remainingTime % (60 * 60 * 1000)) / (60 * 1000)
+    const timestamps = recentEmailTimestamps();
+    if (!timestamps.length) return '';
+    const remaining = Math.max(
+      0,
+      24 * 60 * 60 * 1000 - (Date.now() - Math.min(...timestamps))
     );
-
-    return `${hours}h ${minutes}m`;
+    return `${Math.floor(remaining / 3600000)}h ${Math.floor((remaining % 3600000) / 60000)}m`;
   }
 
   function getEmailCount(): number {
-    const emailTimestamps = localStorage.getItem('emailTimestamps');
-    if (!emailTimestamps) return 0;
-
-    const timestamps = JSON.parse(emailTimestamps);
-    const now = Date.now();
-    const twentyFourHours = 24 * 60 * 60 * 1000;
-
-    // Filter out timestamps older than 24 hours
-    const recentTimestamps = timestamps.filter((timestamp: number) => {
-      return now - timestamp < twentyFourHours;
-    });
-
-    return recentTimestamps.length;
+    return recentEmailTimestamps().length;
   }
 
   function sendEmail(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (sendingRef.current) return;
 
     // Check if user can send email
     if (!canSendEmail()) {
@@ -95,20 +67,23 @@ export default function EmailBox() {
       return;
     }
 
-    const message = subjectRef.current?.value;
-    if (message === undefined || message === '') return;
-    const senderName = senderNameRef.current?.value;
-    const socialId = socialIdRef.current?.value;
+    const message = subjectRef.current?.value.trim();
+    const senderEmail = senderNameRef.current?.value.trim();
+    const socialId = socialIdRef.current?.value.trim();
+    if (!message || !senderEmail || !event.currentTarget.reportValidity())
+      return;
+    sendingRef.current = true;
     setLoading(true);
     const templateParams = {
-      from_name: 'jeevanu345.github.io',
-      to_name: 'Jeevan U Gowda',
-      subject: `${senderName ? senderName : 'personal-site'}`,
-      message: `${message}${socialId ? `\n\nSocial ID: ${socialId}` : ''}`,
+      from_name: senderEmail,
+      reply_to: senderEmail,
+      subject: 'New message from jeevanu.com',
+      message,
+      social_id: socialId || 'Not provided',
+      site_url: 'https://jeevanu.com/',
     };
     emailjs
-      // @ts-ignore
-      .send(serviceID, templateID, templateParams)
+      .send(serviceID, templateID, templateParams, publicKey)
       .then(() => {
         ReactGA.event({
           category: 'Button.Click',
@@ -117,26 +92,27 @@ export default function EmailBox() {
         if (subjectRef.current) subjectRef.current.value = '';
         if (socialIdRef.current) socialIdRef.current.value = '';
 
-        // Store the current timestamp in array
-        const emailTimestamps = localStorage.getItem('emailTimestamps');
-        const timestamps = emailTimestamps ? JSON.parse(emailTimestamps) : [];
-        timestamps.push(Date.now());
-        localStorage.setItem('emailTimestamps', JSON.stringify(timestamps));
-
-        const newEmailCount = getEmailCount();
-        const remainingEmails = 2 - newEmailCount;
+        if (senderNameRef.current) senderNameRef.current.value = '';
+        try {
+          localStorage.setItem(
+            'emailTimestamps',
+            JSON.stringify([...recentEmailTimestamps(), Date.now()])
+          );
+        } catch {
+          // A storage restriction must not turn a successful send into an error.
+        }
 
         toast.success('Email sent successfully!', {
           description: `Thanks for reaching out! I'll get back to you soon :)`,
         });
-
-        setLoading(false);
       })
-      .catch(e => {
-        console.log(e);
+      .catch(() => {
         toast.error('Failed to send email', {
           description: 'Something went wrong. Please try again later.',
         });
+      })
+      .finally(() => {
+        sendingRef.current = false;
         setLoading(false);
       });
   }
@@ -148,6 +124,8 @@ export default function EmailBox() {
         <Input
           id="contact-form-sender-name"
           type="email"
+          name="email"
+          maxLength={254}
           ref={senderNameRef}
           data-cursor-focusable="true"
           placeholder="you@example.com"
@@ -159,6 +137,8 @@ export default function EmailBox() {
         <Input
           id="contact-form-social-id"
           type="text"
+          name="social_id"
+          maxLength={500}
           ref={socialIdRef}
           data-cursor-focusable="true"
           placeholder="@yourhandle or linkedin.com/in/yourprofile"
@@ -171,12 +151,14 @@ export default function EmailBox() {
           data-cursor-focusable="true"
           ref={subjectRef}
           rows={5}
+          name="message"
+          maxLength={5000}
           placeholder="Hey Jeevan, This is an awesome website!"
           required
         ></Textarea>
       </div>
       <Button disabled={loading} type="submit">
-        Send me an email!
+        {loading ? 'Sending…' : 'Send me an email!'}
       </Button>
     </form>
   );
