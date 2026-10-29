@@ -1,8 +1,63 @@
 import React from 'react';
+import Head from 'next/head';
+import { useRouter } from 'next/router';
 
 export default function MetaTags() {
+  const { asPath, pathname } = useRouter();
+  const siteUrl = 'https://jeevanu.com';
+  const pagePath = asPath.split(/[?#]/)[0];
+  const canonical = `${siteUrl}${pagePath === '/' ? '/' : pagePath.replace(/\/$/, '')}`;
+  const isHome = pathname === '/';
+  const title =
+    pathname === '/projects'
+      ? 'Projects | Jeevan U Gowda'
+      : 'Jeevan U Gowda (G1U / JWEINU) | Developer Portfolio';
+  const description =
+    pathname === '/projects'
+      ? 'Explore Jeevan U Gowda’s software projects in full-stack development, AI/ML, distributed systems, RAG, and IoT.'
+      : 'Jeevan U Gowda, also known as G1U and JWEINU. Full-stack developer and AI/ML enthusiast in Bengaluru. Explore my projects at jeevanu.com.';
+  const indexable = isHome || pathname === '/projects';
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Person',
+        '@id': `${siteUrl}/#person`,
+        name: 'Jeevan U Gowda',
+        alternateName: [
+          'G1U',
+          'JWEINU',
+          'Jeevan U',
+          'Jeevan Gowda',
+          'jeevanu345',
+        ],
+        url: `${siteUrl}/`,
+        sameAs: [
+          'https://github.com/jeevanu345',
+          'https://www.linkedin.com/in/jeevanu345/',
+        ],
+      },
+      {
+        '@type': 'WebSite',
+        '@id': `${siteUrl}/#website`,
+        name: 'Jeevan U Gowda',
+        alternateName: ['G1U', 'JWEINU', 'Jeevan U', 'jeevanu.com'],
+        url: `${siteUrl}/`,
+        author: { '@id': `${siteUrl}/#person` },
+      },
+      {
+        '@type': 'ProfilePage',
+        '@id': `${siteUrl}/#profile`,
+        url: `${siteUrl}/`,
+        name: title,
+        mainEntity: { '@id': `${siteUrl}/#person` },
+        isPartOf: { '@id': `${siteUrl}/#website` },
+      },
+    ],
+  };
+
   return (
-    <>
+    <Head>
       <link
         rel="apple-touch-icon"
         sizes="180x180"
@@ -29,43 +84,52 @@ export default function MetaTags() {
       <meta name="msapplication-TileColor" content="#2b5797" />
       <meta name="theme-color" content="#162447" />
 
-      <title>Jeevan U Gowda</title>
-      <meta name="title" content="Jeevan U Gowda" />
-      <meta
-        name="description"
-        content="Jeevan U Gowda's Portfolio Website — Full-Stack Developer & AI/ML Enthusiast. Projects in distributed systems, RAG, IoT, and more."
-      />
+      <title>{title}</title>
+      <link rel="canonical" href={canonical} />
+      <meta name="title" content={title} />
+      <meta name="description" content={description} />
       <meta name="author" content="Jeevan U Gowda (jeevanu345)" />
       <meta
         name="keywords"
         content="jeevanu345, jeevan u gowda portfolio, jeevan gowda, full stack developer, AI ML engineer, BMSCE, information science, raftkv, RAG, IoT projects"
       />
-      <meta name="robots" content="index, follow" />
+      <meta
+        name="robots"
+        content={indexable ? 'index, follow' : 'noindex, follow'}
+      />
       <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
       <meta name="language" content="English" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
 
       <meta property="og:type" content="website" />
-      <meta property="og:url" content="https://jeevanu345.github.io/" />
-      <meta property="og:title" content="Jeevan U Gowda" />
+      <meta property="og:url" content={canonical} />
+      <meta property="og:site_name" content="Jeevan U Gowda" />
+      <meta property="og:title" content={title} />
+      <meta property="og:description" content={description} />
       <meta
-        property="og:description"
-        content="Jeevan U Gowda's Portfolio — Full-Stack Developer & AI/ML Enthusiast showcasing projects in distributed systems, RAG, IoT, and more."
+        property="og:image"
+        content={`${siteUrl}/meta/meta-social-image.png`}
       />
-      <meta property="og:image" content="/meta/meta-social-image.png" />
-      <meta name="og:locale" content="en_IN" />
-      <meta name="og:type" content="website" />
+      <meta property="og:locale" content="en_IN" />
 
       <meta name="twitter:site" content="jeevanu345" />
       <meta name="twitter:creator" content="jeevanu345" />
       <meta property="twitter:card" content="summary_large_image" />
-      <meta property="twitter:url" content="https://jeevanu345.github.io/" />
-      <meta property="twitter:title" content="Jeevan U Gowda" />
+      <meta property="twitter:url" content={canonical} />
+      <meta property="twitter:title" content={title} />
+      <meta property="twitter:description" content={description} />
       <meta
-        property="twitter:description"
-        content="Jeevan U Gowda's Portfolio — Full-Stack Developer & AI/ML Enthusiast showcasing projects in distributed systems, RAG, IoT, and more."
+        property="twitter:image"
+        content={`${siteUrl}/meta/meta-social-image.png`}
       />
-      <meta property="twitter:image" content="/meta/meta-social-image.png" />
-    </>
+      {isHome && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(structuredData).replace(/</g, '\\u003c'),
+          }}
+        />
+      )}
+    </Head>
   );
 }

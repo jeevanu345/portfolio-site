@@ -11,6 +11,7 @@ import { ThemeProvider } from '@/components/ThemeProvider';
 import { Toaster } from '@/components/ui/sonner';
 import FloatingButtonGroup from '../components/FloatingButtonGroup';
 import AIChatWidget from '../components/AIChatWidget';
+import MetaTags from '../components/meta/MetaTags';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [loading, setLoading] = useState(false);
@@ -40,6 +41,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <>
+      <MetaTags />
       <ThemeProvider
         attribute="class"
         defaultTheme="light"

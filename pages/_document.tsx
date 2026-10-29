@@ -1,5 +1,4 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
-import MetaTags from '../components/meta/MetaTags';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 
@@ -8,8 +7,6 @@ class MyDocument extends Document {
     return (
       <Html suppressHydrationWarning lang="en">
         <Head>
-          <MetaTags />
-
           {/* DNS prefetch for external resources */}
           <link rel="dns-prefetch" href="//www.google-analytics.com" />
           <link rel="dns-prefetch" href="//api.github.com" />

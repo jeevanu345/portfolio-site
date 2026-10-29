@@ -126,7 +126,7 @@ const Home: NextPage = () => {
       <div className="mt-10 sm:mt-20 flex">
         <div className="">
           <div className="text-4xl md:text-5xl font-medium">
-            <div className="">Hey, I'm Jeevan U Gowda</div>
+            <h1 className="">Hey, I'm Jeevan U Gowda</h1>
             <div className="mt-4">
               <span className="hidden sm:inline-block mr-4">I'm a </span>
               <span className="text-primary">
@@ -134,6 +134,9 @@ const Home: NextPage = () => {
               </span>
             </div>
           </div>
+          <p className="mt-3 text-sm text-muted-foreground">
+            Also known as G1U and JWEINU · jeevanu.com
+          </p>
           <div className="mt-4 flex items-center">
             <GitHubStats username="jeevanu345" />
           </div>
