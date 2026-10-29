@@ -134,9 +134,6 @@ const Home: NextPage = () => {
               </span>
             </div>
           </div>
-          <p className="mt-3 text-sm text-muted-foreground">
-            Also known as JWEINU · jeevanu.com
-          </p>
           <div className="mt-4 flex items-center">
             <GitHubStats username="jeevanu345" />
           </div>

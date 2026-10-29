@@ -11,11 +11,11 @@ export default function MetaTags() {
   const title =
     pathname === '/projects'
       ? 'Projects | Jeevan U'
-      : 'Jeevan U (JWEINU) | Developer Portfolio';
+      : 'Jeevan U | Developer Portfolio';
   const description =
     pathname === '/projects'
       ? 'Explore Jeevan U’s software projects in full-stack development, AI/ML, distributed systems, RAG, and IoT.'
-      : 'Jeevan U, also known as JWEINU (Jeevan U Gowda). Full-stack developer and AI/ML enthusiast in Bengaluru. Explore my projects at jeevanu.com.';
+      : 'Jeevan U. Full-stack developer and AI/ML enthusiast in Bengaluru. Explore my projects at jeevanu.com.';
   const indexable = isHome || pathname === '/projects';
   const structuredData = {
     '@context': 'https://schema.org',
@@ -24,12 +24,6 @@ export default function MetaTags() {
         '@type': 'Person',
         '@id': `${siteUrl}/#person`,
         name: 'Jeevan U',
-        alternateName: [
-          'JWEINU',
-          'Jeevan U Gowda',
-          'Jeevan Gowda',
-          'jeevanu345',
-        ],
         url: `${siteUrl}/`,
         sameAs: [
           'https://github.com/jeevanu345',
@@ -40,7 +34,6 @@ export default function MetaTags() {
         '@type': 'WebSite',
         '@id': `${siteUrl}/#website`,
         name: 'Jeevan U',
-        alternateName: ['JWEINU', 'Jeevan U Gowda', 'jeevanu.com'],
         url: `${siteUrl}/`,
         author: { '@id': `${siteUrl}/#person` },
       },
@@ -87,10 +80,10 @@ export default function MetaTags() {
       <link rel="canonical" href={canonical} />
       <meta name="title" content={title} />
       <meta name="description" content={description} />
-      <meta name="author" content="Jeevan U (Jeevan U Gowda, jeevanu345)" />
+      <meta name="author" content="Jeevan U" />
       <meta
         name="keywords"
-        content="Jeevan U, JWEINU, jeevanu345, jeevan u gowda portfolio, jeevan gowda, full stack developer, AI ML engineer, BMSCE, information science, raftkv, RAG, IoT projects"
+        content="Jeevan U, jeevanu.com, jeevanu345, full stack developer, AI ML engineer, BMSCE, information science, raftkv, RAG, IoT projects"
       />
       <meta
         name="robots"
